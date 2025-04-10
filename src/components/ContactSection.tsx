@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Mail, Calendar, Linkedin, FileText } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { sendEmail } from "@/lib/emailService";
 
 const projectTypes = [
   "Web Application",
@@ -42,24 +43,36 @@ export default function ContactSection() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Send email using EmailJS
+      await sendEmail(formData);
+      
       toast({
         title: "Message sent!",
         description: "Thanks for reaching out. I'll get back to you soon.",
       });
-      setIsSubmitting(false);
+      
+      // Reset form after successful submission
       setFormData({
         name: "",
         email: "",
         projectType: "",
         message: ""
       });
-    }, 1500);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast({
+        title: "Error sending message",
+        description: "There was a problem sending your message. Please try again later.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -155,7 +168,7 @@ export default function ContactSection() {
               <h3 className="text-xl font-semibold mb-6 text-foreground">Connect Directly</h3>
               <div className="space-y-6">
                 <a 
-                  href="mailto:letsbuild@projectsbydarlene.com" 
+                  href="mailto:dbellis.tecg@gmail.com" 
                   className="flex items-center gap-4 p-4 bg-card rounded-lg shadow-sm hover:shadow-md transition-shadow"
                 >
                   <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
@@ -163,12 +176,12 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <p className="font-medium text-card-foreground">Email Me</p>
-                    <p className="text-sm text-foreground/70">letsbuild@projectsbydarlene.com</p>
+                    <p className="text-sm text-foreground/70">dbellis.tech@gmail.com</p>
                   </div>
                 </a>
 
                 <a 
-                  href="#" 
+                  href="https://calendly.com/dbellis-tech/30min" 
                   className="flex items-center gap-4 p-4 bg-card rounded-lg shadow-sm hover:shadow-md transition-shadow"
                 >
                   <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
@@ -181,7 +194,7 @@ export default function ContactSection() {
                 </a>
 
                 <a 
-                  href="#" 
+                  href="https://www.linkedin.com/in/darlene-software-engineer/" 
                   className="flex items-center gap-4 p-4 bg-card rounded-lg shadow-sm hover:shadow-md transition-shadow"
                 >
                   <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
@@ -203,8 +216,12 @@ export default function ContactSection() {
                   <p className="text-sm text-foreground/70 mb-4">
                     Download my full resume to see my project history and technical skills.
                   </p>
-                  <Button variant="outline" className="border-primary text-primary hover:bg-primary/5">
-                    Download Resume (PDF)
+                  <Button 
+                    variant="outline" 
+                    className="border-primary text-primary hover:bg-primary/5"
+                    onClick={() => window.open('/Darlene Project Manager cv.pdf', '_blank')}
+                  >
+                    Download Resume
                   </Button>
                 </div>
               </div>

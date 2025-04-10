@@ -3,8 +3,12 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, ChevronRight } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+
+// Interface moved to be with the data model
 
 interface CaseStudy {
+  id: string;
   title: string;
   role: string;
   scope: string;
@@ -16,6 +20,7 @@ interface CaseStudy {
 
 const caseStudies: CaseStudy[] = [
   {
+    id: "ai-model-ops",
     title: "AI Model Ops for Global Retail Platform",
     role: "Technical PM & Stakeholder Lead",
     scope: "Managed 12-person cross-functional team across 4 time zones",
@@ -29,6 +34,7 @@ const caseStudies: CaseStudy[] = [
     image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=800&h=500"
   },
   {
+    id: "ecommerce-replatforming",
     title: "E-Commerce Replatforming Project",
     role: "Senior Technical Project Manager",
     scope: "Led migration team of 8 developers and 3 designers",
@@ -42,6 +48,7 @@ const caseStudies: CaseStudy[] = [
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&h=500"
   },
   {
+    id: "healthcare-dashboard",
     title: "Healthcare Data Analytics Dashboard",
     role: "Project Manager & Product Owner",
     scope: "Coordinated 6-person remote team with healthcare stakeholders",
@@ -169,10 +176,10 @@ export default function CaseStudiesSection() {
                     </div>
                     
                     <div className="mt-6 flex justify-end">
-                      <a href="#" className="inline-flex items-center text-primary hover:text-accent transition-colors duration-300 font-medium group">
+                      <Link to={`/case-studies/${study.id}`} className="inline-flex items-center text-primary hover:text-accent transition-colors duration-300 font-medium group">
                         View detailed case study
                         <ChevronRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>

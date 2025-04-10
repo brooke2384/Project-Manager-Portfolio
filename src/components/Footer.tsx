@@ -1,6 +1,3 @@
-
-import { Heart } from "lucide-react";
-
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   
@@ -32,10 +29,10 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4 text-foreground">Connect</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-foreground/70 hover:text-primary">LinkedIn</a></li>
-              <li><a href="#" className="text-foreground/70 hover:text-primary">GitHub</a></li>
-              <li><a href="#" className="text-foreground/70 hover:text-primary">Twitter</a></li>
-              <li><a href="mailto:letsbuild@projectsbydarlene.com" className="text-foreground/70 hover:text-primary">letsbuild@projectsbydarlene.com</a></li>
+              <li><a href="https://www.linkedin.com/in/darlene-software-engineer/" className="text-foreground/70 hover:text-primary">LinkedIn</a></li>
+              <li><a href="https://github.com/brooke2384" className="text-foreground/70 hover:text-primary">GitHub</a></li>
+          
+              <li><a href="mailto:dbellis.tech@gmail.com" className="text-foreground/70 hover:text-primary">Email</a></li>
             </ul>
           </div>
         </div>
@@ -43,9 +40,6 @@ export default function Footer() {
         <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-foreground/60">
             © {currentYear} Darlene. All rights reserved.
-          </p>
-          <p className="text-sm text-foreground/60 flex items-center gap-1 mt-4 md:mt-0">
-            Made with <Heart className="h-3 w-3 text-red-500" /> for great project management
           </p>
         </div>
       </div>
