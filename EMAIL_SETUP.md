@@ -27,16 +27,23 @@ This project uses EmailJS to handle the contact form submission. Follow these st
    - `{{message}}` - The message content from the form
 4. Save the template and note down the **Template ID**.
 
-### 4. Update the Configuration in the Project
+### 4. Set Up Environment Variables
 
-1. Open the file `src/lib/emailService.ts`.
-2. Replace the placeholder values with your actual EmailJS credentials:
-   ```typescript
-   const SERVICE_ID = 'your_service_id'; // Replace with your actual EmailJS service ID
-   const TEMPLATE_ID = 'your_template_id'; // Replace with your actual EmailJS template ID
-   const USER_ID = 'your_user_id'; // Replace with your actual EmailJS user ID
+1. For local development:
+   - Create a `.env` file in the root of your project (if it doesn't exist already)
+   - Add your EmailJS credentials as environment variables:
    ```
-   You can find your **User ID** (also called Public Key) in the "Account" section of the EmailJS dashboard.
+   VITE_EMAILJS_SERVICE_ID=your_service_id
+   VITE_EMAILJS_TEMPLATE_ID=your_template_id
+   VITE_EMAILJS_USER_ID=your_user_id
+   ```
+
+2. For production deployment on Vercel:
+   - Go to your project settings in the Vercel dashboard
+   - Navigate to the "Environment Variables" section
+   - Add the same variables as above with your actual EmailJS credentials
+
+You can find your **User ID** (also called Public Key) in the "Account" section of the EmailJS dashboard.
 
 ### 5. Test the Contact Form
 

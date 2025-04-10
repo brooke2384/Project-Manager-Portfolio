@@ -24,4 +24,5 @@ dist-ssr
 *.sw?
 
 # Sensitive files with API keys
-src/lib/emailService.ts
+# We no longer need to ignore emailService.ts since it now uses environment variables
+# src/lib/emailService.ts
